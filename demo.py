@@ -8,8 +8,8 @@ from src import util
 from src.body import Body
 from src.hand import Hand
 
-body_estimation = Body('model/body_pose_model.pth')
-hand_estimation = Hand('model/hand_pose_model.pth')
+body_estimation = Body('/home2/lgfm95/openposehzzone/model/body_pose_model.pth')
+hand_estimation = Hand('/home2/lgfm95/openposehzzone/model/hand_pose_model.pth')
 
 def main(oriImg):
     candidate, subset = body_estimation(oriImg)
