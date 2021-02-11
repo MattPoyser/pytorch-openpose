@@ -37,13 +37,14 @@ def main(oriImg):
         all_hand_peaks.append(peaks)
 
     canvas = util.draw_handpose(canvas, all_hand_peaks)
+    cv2.imwrite("test.png", canvas)
 
-    # plt.imshow(canvas[:, :, [2, 1, 0]])
-    # plt.axis('off')
-    # plt.show()
     return canvas[:, :, [2, 1, 0]]
 
 if __name__ == '__main__':
     test_image = 'images/demo.jpg'
     oriImg = cv2.imread(test_image)  # B,G,R order
-    main(oriImg)
+    canvas = main(oriImg)
+    plt.imshow(canvas)
+    plt.axis('off')
+    plt.show()
