@@ -40,11 +40,11 @@ def main(oriImg):
         all_hand_peaks.append(peaks)
 
     shape3 = canvas.shape
-    canvas = util.draw_handpose(canvas, all_hand_peaks)
+    # canvas = util.draw_handpose(canvas, all_hand_peaks)
     shape4 = canvas.shape
     cv2.imwrite("test.png", canvas)
 
-    raise AttributeError(shape0, shape1, shape2, shape3, shape4)
+    # raise AttributeError(shape0, shape1, shape2, shape3, shape4)
     return canvas[:, :, [2, 1, 0]]
 
 if __name__ == '__main__':
