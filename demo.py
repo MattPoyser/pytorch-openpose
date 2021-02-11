@@ -12,13 +12,16 @@ body_estimation = Body('/home2/lgfm95/openposehzzone/model/body_pose_model.pth')
 hand_estimation = Hand('/home2/lgfm95/openposehzzone/model/hand_pose_model.pth')
 
 def main(oriImg):
+    shape0 = oriImg.shape
     candidate, subset = body_estimation(oriImg)
     canvas = copy.deepcopy(oriImg)
+    shape1 = canvas.shape
     canvas = util.draw_bodypose(canvas, candidate, subset)
     # detect hand
     hands_list = util.handDetect(candidate, subset, oriImg)
 
     all_hand_peaks = []
+    shape2 = canvas.shape
     for x, y, w, is_left in hands_list:
         # cv2.rectangle(canvas, (x, y), (x+w, y+w), (0, 255, 0), 2, lineType=cv2.LINE_AA)
         # cv2.putText(canvas, 'left' if is_left else 'right', (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
@@ -36,9 +39,12 @@ def main(oriImg):
         #     print(peaks)
         all_hand_peaks.append(peaks)
 
+    shape3 = canvas.shape
     canvas = util.draw_handpose(canvas, all_hand_peaks)
+    shape4 = canvas.shape
     cv2.imwrite("test.png", canvas)
 
+    raise AttributeError(shape0, shape1, shape2, shape3, shape4)
     return canvas[:, :, [2, 1, 0]]
 
 if __name__ == '__main__':
