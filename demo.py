@@ -43,7 +43,7 @@ def main(oriImg):
     canvas = util.draw_handpose(canvas, all_hand_peaks)
     shape4 = canvas.shape
     cv2.imwrite("test.png", canvas)
-    canvas = cv2.resize(canvas, shape0[:2])
+    canvas = cv2.resize(canvas, (shape0[1],shape0[0]))
     # raise AttributeError(shape0, shape1, shape2, shape3, shape4)
     return canvas[:, :, [2, 1, 0]]
 
